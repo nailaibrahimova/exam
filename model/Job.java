@@ -8,6 +8,12 @@ public class Job {
     private Department department;
     private LocalDate jobEnterDate;
 
+    public Job(String position, Department department, LocalDate jobEnterDate) {
+        this.position = position;
+        this.department = department;
+        this.jobEnterDate = jobEnterDate;
+    }
+
     public String getPosition() {
         return position;
     }
