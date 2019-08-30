@@ -5,6 +5,10 @@ public enum Department {
 
     private Employee director;
 
+    public Employee getDirector() {
+        return director;
+    }
+
     public void setDirector(Employee director) {
         this.director = director;
     }
