@@ -4,6 +4,7 @@ import exam.exception.WrongEmployeeException;
 import exam.model.*;
 import exam.service.EmployeeService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -102,5 +103,21 @@ public class EmployeeController {
 
     public void changeSalary(int id, double salary) {
         employeeService.changeSalary(id, salary);
+    }
+
+    public void changeBoss(int id, int bossId) {
+        employeeService.changeBoss(id, bossId);
+    }
+
+    public void changeGender(int id, Gender gender) {
+        employeeService.changeGender(id, gender);
+    }
+
+    public void changeBirthDate(int id, LocalDate birthDate) {
+        employeeService.changeBirthDate(id, birthDate);
+    }
+
+    public void changeJobEnterDate(int id, LocalDate enterDate) {
+        employeeService.changeJobEnterDate(id, enterDate);
     }
 }

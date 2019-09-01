@@ -1,5 +1,6 @@
 package exam.application;
 
+import exam.controller.DepartmentController;
 import exam.controller.EmployeeController;
 import exam.controller.UserController;
 import exam.exception.WrongEmployeeException;
@@ -175,7 +176,7 @@ public class ApplicationMenu {
                                             LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
                                         }
                                     } else if (action.equals("3")) {
-                                        System.out.println("department: ");
+                                        System.out.println("department(finance, it, hr, marketing): ");
                                         String department = sc.nextLine();
                                         List<Employee> employeesList = employeeController.findEmployeesByDepartment(Enum.valueOf(Department.class, department.toUpperCase()));
                                         LOGGER.info("Employees in department " + department + " are found");
@@ -238,10 +239,11 @@ public class ApplicationMenu {
                                 System.out.println("1-Change information\n2-Back");
                                 action = sc.nextLine();
                                 if (action.equals("1")) {
-                                    System.out.println("1-name\n2-salary\n3-position\n4-department\n5-telephone");
+                                    System.out.println("1-name\n2-salary\n3-position\n4-department\n5-telephone\n6-boss\n" +
+                                            "7-director of department\n8-birth date\n9-gender\n10-employment start date");
                                     action = sc.nextLine();
                                     employeeController.allEmployeesList().forEach((Employee employee1) -> System.out.println(employee1.getId() + " " + employee1.getName()));
-                                    System.out.println("id of employee to change : ");
+                                    System.out.println("id of employee to change information : ");
                                     int id = sc.nextInt();
                                     if (action.equals("1")) {
                                         System.out.println("name : ");
@@ -269,6 +271,53 @@ public class ApplicationMenu {
                                         String telephone = sc.next() + sc.nextLine();
                                         employeeController.changeTelephone(id, telephone);
                                         LOGGER.info("Telephone of employee with id=" + id + " is changed");
+                                    } else if (action.equals("6")) {
+                                        System.out.println("id of boss: ");
+                                        int bossId = sc.nextInt();
+                                        employeeController.changeBoss(id, bossId);
+                                        LOGGER.info("Boss of employee is changed");
+                                    } else if (action.equals("7")) {
+                                        DepartmentController departmentController = new DepartmentController();
+                                        System.out.println("department(finance, it, hr, marketing): ");
+                                        String department = sc.next() + sc.nextLine();
+                                        Department department1 = null;
+                                        if (department.equals("finance")) department1 = FINANCE;
+                                        else if (department.equals("hr")) department1 = HR;
+                                        else if (department.equals("it")) department1 = IT;
+                                        else if (department.equals("marketing")) department1 = MARKETING;
+                                        try {
+                                            Employee e = employeeController.findEmployeeById(id);
+                                            departmentController.setDepartmentDirector(department1, e);
+                                            LOGGER.info("Director of department successfully changed");
+                                        } catch (WrongEmployeeException ex) {
+                                            System.out.println(ex.getMessage());
+                                            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+                                        }
+                                    } else if (action.equals("8")) {
+                                        System.out.println("birth date(dd/mm/yyyy): ");
+                                        String date = sc.next() + sc.nextLine();
+                                        String[] dates = date.split("/");
+                                        if (dates.length == 3) {
+                                            LocalDate birthDate = LocalDate.of(Integer.valueOf(dates[2]), Integer.valueOf(dates[1]), Integer.valueOf(dates[0]));
+                                            employeeController.changeBirthDate(id, birthDate);
+                                            LOGGER.info("Birth date of employee with id " + id + " successfully changed");
+                                        }
+                                    } else if (action.equals("9")) {
+                                        System.out.println("gender(1-male,2-female): ");
+                                        action = sc.nextLine();
+                                        if (action.equals("1")) {
+                                            employeeController.changeGender(id, MALE);
+                                        } else if (action.equals("2")) employeeController.changeGender(id, FEMALE);
+                                        LOGGER.info("Gender of employee with id " + id + " successfully changed");
+                                    } else if (action.equals("10")) {
+                                        System.out.println("job enter date(dd/mm/yyyy): ");
+                                        String date = sc.next() + sc.nextLine();
+                                        String[] dates = date.split("/");
+                                        if (dates.length == 3) {
+                                            LocalDate enterDate = LocalDate.of(Integer.valueOf(dates[2]), Integer.valueOf(dates[1]), Integer.valueOf(dates[0]));
+                                            employeeController.changeJobEnterDate(id, enterDate);
+                                            LOGGER.info("Jb enter date of employee with id " + id + " successfully changed");
+                                        }
                                     }
                                 } else if (action.equals("2")) break loop7;
                             }

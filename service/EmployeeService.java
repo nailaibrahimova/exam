@@ -204,4 +204,20 @@ public class EmployeeService {
     public void changeSalary(int id, double salary) {
         employeeRepo.changeSalary(id, salary);
     }
+
+    public void changeBoss(int id, int bossId){
+        employeeRepo.changeBoss(id, bossId);
+    }
+
+    public void changeGender(int id, Gender gender){
+        employeeRepo.changeGender(id, gender);
+    }
+
+    public void changeBirthDate(int id, LocalDate birthDate) {
+        employeeRepo.changeBirthDate(id, birthDate);
+    }
+
+    public void changeJobEnterDate(int id, LocalDate enterDate) {
+        employeeRepo.changeJobEnterDate(id, enterDate);
+    }
 }

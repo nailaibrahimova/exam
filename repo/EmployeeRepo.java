@@ -2,7 +2,9 @@ package exam.repo;
 
 import exam.model.Department;
 import exam.model.Employee;
+import exam.model.Gender;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -134,5 +136,26 @@ public class EmployeeRepo {
     public void changeSalary(int id, double salary) {
         Employee e = findEmployeeById(id);
         e.setSalary(salary);
+    }
+
+    public void changeBoss(int id, int bossId) {
+        Employee employee = findEmployeeById(id);
+        Employee boss = findEmployeeById(bossId);
+        employee.setBoss(boss);
+    }
+
+    public void changeGender(int id, Gender gender) {
+        Employee e = findEmployeeById(id);
+        e.setGender(gender);
+    }
+
+    public void changeBirthDate(int id, LocalDate birthDate) {
+        Employee e = findEmployeeById(id);
+        e.setBirthDate(birthDate);
+    }
+
+    public void changeJobEnterDate(int id, LocalDate enterDate) {
+        Employee e = findEmployeeById(id);
+        e.getJob().setJobEnterDate(enterDate);
     }
 }
