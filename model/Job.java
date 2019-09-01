@@ -8,6 +8,9 @@ public class Job {
     private Department department;
     private LocalDate jobEnterDate;
 
+    public Job() {
+    }
+
     public Job(String position, Department department, LocalDate jobEnterDate) {
         this.position = position;
         this.department = department;
@@ -18,30 +21,33 @@ public class Job {
         return position;
     }
 
-    public void setPosition(String position) {
+    public Job setPosition(String position) {
         this.position = position;
+        return this;
     }
 
     public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public Job setDepartment(Department department) {
         this.department = department;
+        return this;
     }
 
     public LocalDate getJobEnterDate() {
         return jobEnterDate;
     }
 
-    public void setJobEnterDate(LocalDate jobEnterDate) {
+    public Job setJobEnterDate(LocalDate jobEnterDate) {
         this.jobEnterDate = jobEnterDate;
+        return this;
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String date=jobEnterDate.format(dateTimeFormatter);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String date = jobEnterDate.format(dateTimeFormatter);
         return "Job{" +
                 "position='" + position + '\'' +
                 ", department=" + department +

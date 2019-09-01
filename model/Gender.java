@@ -1,5 +1,5 @@
 package exam.model;
 
-public enum  Gender {
+public enum Gender {
     MALE, FEMALE;
 }

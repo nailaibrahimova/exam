@@ -13,11 +13,11 @@ public class Employee {
     private double salary;
     private static int nextId = 0;
 
-    public Employee(){
-        id=getNextId();
+    public Employee() {
+        id = getNextId();
     }
 
-    public Employee(String name, Gender gender){
+    public Employee(String name, Gender gender) {
         id = getNextId();
         this.name = name;
         this.gender = gender;
