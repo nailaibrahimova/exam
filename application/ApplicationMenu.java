@@ -316,7 +316,7 @@ public class ApplicationMenu {
                                         if (dates.length == 3) {
                                             LocalDate enterDate = LocalDate.of(Integer.valueOf(dates[2]), Integer.valueOf(dates[1]), Integer.valueOf(dates[0]));
                                             employeeController.changeJobEnterDate(id, enterDate);
-                                            LOGGER.info("Jb enter date of employee with id " + id + " successfully changed");
+                                            LOGGER.info("Job enter date of employee with id " + id + " successfully changed");
                                         }
                                     }
                                 } else if (action.equals("2")) break loop7;
